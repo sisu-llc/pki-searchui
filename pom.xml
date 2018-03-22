@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.attivio.suit</groupId>
+  <groupId>com.pki.suit</groupId>
   <artifactId>parent</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>searchui/parent</name>
+  <name>pki-searchui/parent</name>
   <description>Framework for building search user-interface applications on top of the Attivio platform</description>
   <licenses>
     <license>
@@ -15,7 +15,7 @@
   </licenses>
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/attivio/searchui/issues</url>
+    <url>https://github.com/sisu-llc/pki-searchui/issues</url>
   </issueManagement>
   <distributionManagement>
     <repository>
@@ -29,9 +29,9 @@
     </snapshotRepository>
   </distributionManagement>
   <scm>
-    <connection>scm:git:https://github.com/attivio/searchui.git</connection>
-    <developerConnection>scm:git:https://github.com/attivio/searchui.git</developerConnection>
-    <url>https://github.com/attivio/searchui.git</url>
+    <connection>scm:git:https://github.com/sisu-llc/pki-searchui.git</connection>
+    <developerConnection>scm:git:https://github.com/sisu-llc/pki-searchui.git</developerConnection>
+    <url>https://github.com/sisu-llc/pki-searchui.git</url>
     <tag>HEAD</tag>
   </scm>
   <properties>
@@ -100,8 +100,8 @@
       <properties>
         <maven.repo.releases>releases</maven.repo.releases>
         <maven.repo.snapshots>snapshots</maven.repo.snapshots>
-        <maven.repo.url.releases>http://mvn.corp.attivio.com/nexus/content/repositories/releases/</maven.repo.url.releases>
-        <maven.repo.url.snapshots>http://mvn.corp.attivio.com/nexus/content/repositories/snapshots/</maven.repo.url.snapshots>
+        <maven.repo.url.releases>https://maven.sisu.io/repositories/releases/</maven.repo.url.releases>
+        <maven.repo.url.snapshots>https://maven.sisu.io/repositories/snapshots/</maven.repo.url.snapshots>
       </properties>
     </profile>
   </profiles>

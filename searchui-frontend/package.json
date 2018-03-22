@@ -1,6 +1,6 @@
 {
-  "name": "@attivio/searchui",
-  "version": "0.0.1",
+  "name": "@sisu-llc/pki-searchui",
+  "version": "0.1.0",
   "description": "Framework for building search user-interface applications on top of the Attivio platform.",
   "keywords": [
     "Attivio",
@@ -13,13 +13,13 @@
   ],
   "homepage": "http://www.attivio.com",
   "bugs": {
-    "url": "https://github.com/attivio/searchui/issues",
-    "email": "suitbugs@attivio.com"
+    "url": "https://github.com/sisu-llc/pki-searchui/issues",
+    "email": "bugs@sisu.io"
   },
   "license": "SEE LICENSE IN ../LICENSE.txt",
-  "author": "Attivio, Inc.",
+  "author": "Sisu Integrated Services, LLC",
   "main": "index.js",
-  "repository": "https://github.com/attivio/searchui",
+  "repository": "https://github.com/sisu-llc/pki-searchui",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "flow": "flow --show-all-errors",
@@ -31,7 +31,7 @@
     "styleguide:serve": "styleguidist server"
   },
   "dependencies": {
-    "@attivio/suit": "^0.0.19",
+    "@sisu-llc/pki-suit": "^0.0.19",
     "@mapbox/mapbox-gl-draw": "^1.0.4",
     "babel-polyfill": "^6.26.0",
     "es6-object-assign": "^1.1.0",
