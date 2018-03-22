@@ -31,8 +31,8 @@
     "styleguide:serve": "styleguidist server"
   },
   "dependencies": {
-    "@sisu-llc/pki-suit": "^0.0.19",
     "@mapbox/mapbox-gl-draw": "^1.0.4",
+    "@sisu-llc/pki-suit": "0.1.19",
     "babel-polyfill": "^6.26.0",
     "es6-object-assign": "^1.1.0",
     "es6-promise": "^4.1.1",

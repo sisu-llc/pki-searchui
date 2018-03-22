@@ -10,7 +10,7 @@ const EncodingPlugin = require('webpack-encoding-plugin');
 // This is the base URI for the webapp and is used when links get created for resources
 // such as images and font files. It MUST match the value in the configuration.properties
 // file.
-const prefix = '/searchui';
+const prefix = '/pki-searchui';
 const publicPath = `${prefix}/`;
 
 module.exports = {

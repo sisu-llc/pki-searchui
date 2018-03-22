@@ -10,7 +10,7 @@ import {
   AuthUtils,
   LoginForm,
   Masthead,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 type LoginPageState = {
   loginError: string | null;

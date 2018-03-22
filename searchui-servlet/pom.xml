@@ -96,8 +96,8 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.attivio.suit</groupId>
-                  <artifactId>searchui-frontend</artifactId>
+                  <groupId>com.pki.suit</groupId>
+                  <artifactId>pki-searchui-frontend</artifactId>
                   <classifier>dist</classifier>
                   <type>zip</type>
                   <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
@@ -119,8 +119,8 @@
               <failOnMissingWebXml>false</failOnMissingWebXml>
               <excludes>
                 <exclude>
-                  <groupId>com.attivio.suit</groupId>
-                  <artifactId>searchui-frontend</artifactId>
+                  <groupId>com.pki.suit</groupId>
+                  <artifactId>pki-searchui-frontend</artifactId>
                 </exclude>
               </excludes>
             </configuration>

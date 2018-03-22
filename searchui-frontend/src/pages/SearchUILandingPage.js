@@ -12,7 +12,7 @@ import {
   SearchBar,
   MastheadNavTabs,
   Masthead,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 import SearchUIApp from '../SearchUIApp';
 

@@ -16,7 +16,7 @@ import {
   Logger,
   NavTabInfo,
   ObjectUtils,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 import SearchUILandingPage from './pages/SearchUILandingPage';
 import SearchUIFakeLandingPage from './pages/SearchUIFakeLandingPage';

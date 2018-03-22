@@ -23,7 +23,7 @@ import {
   FacetResults,
   NavbarSort,
   Masthead,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 import SearchUIApp from '../SearchUIApp';
 

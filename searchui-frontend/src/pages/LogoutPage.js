@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 import Button from 'react-bootstrap/lib/Button';
 
-import { Masthead } from '@attivio/suit';
+import { Masthead } from '@sisu-llc/pki-suit';
 
 type LogoutPageState = {
   logoutError: string | null;

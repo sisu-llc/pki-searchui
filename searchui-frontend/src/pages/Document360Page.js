@@ -27,7 +27,7 @@ import {
   DocumentThumbnail,
   KnowledgeGraphPanel,
   SearchResultTitle,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 import SearchUIApp from '../SearchUIApp';
 

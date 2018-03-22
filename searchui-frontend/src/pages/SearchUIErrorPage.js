@@ -9,7 +9,7 @@ import DocumentTitle from 'react-document-title';
 import {
   Masthead,
   MastheadNavTabs,
-} from '@attivio/suit';
+} from '@sisu-llc/pki-suit';
 
 import SearchUIApp from '../SearchUIApp';
 
