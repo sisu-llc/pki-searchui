@@ -32,7 +32,7 @@
     //   baseUri: 'http://example.com:8983/solr/mycollection/myHandler'
     // in the case of 'attivio', only the Attivio instance URI is needed.
 
-    baseUri: '/searchui',
+    baseUri: '/pki-searchui',
 
     // If searchEngineType is 'elastic' or 'solr', the property customOptions
     // needs to be added.
@@ -89,7 +89,7 @@
     // used when running the servlet and/or the servlet name and mapping in the web.xml
     // file in the Attivio module. Finally, it must match the value of the prefix variable in
     // the webpack.config.js file.
-    basename: '/searchui',
+    basename: '/pki-searchui',
 
     // This specifies the type of authentication that the front-end application will use.
     // Set this to 'SAML' to enable SAML authentication when hosting the UI in a servlet
@@ -111,17 +111,13 @@
     // for FactBook and we start querying the schema to get this map.
     entityFields: {
       people: 'People',
-      company: 'Companies',
+      company_mvs: 'Companies',
       location: 'Locations',
       languages: 'Languages',
-      date: 'Date',
-      keyphrases: 'Key Phrases',
-      // Factbook fields: uncomment the following lines if the Factbook module has been included in your project
-      // spokenLanguage: 'Spoken Languages',
-      // resource: 'Resources',
-      // climate: 'Climate',
-      // ethnicity: 'Ethnicities',
-      // country: 'Country',
+      plot_date_t: 'Publish Date',
+      drug_mvs: 'Drugs/Compounds',
+      adventmed_mvs: 'Adverse Events',
+      anat_mvs: 'Anatomical Terms'
     },
 
     // This map controls the colors used to show various entity types. The keys are the fields
@@ -132,30 +128,24 @@
     // with the first entry for the first data set in the chart.
     entityColors: {
       location: '#007dbc',
-      company: '#ed7a23',
-      people: '#fedd0e',
-      product: '#db2e75',
-      religion: '#ef8baa',
-      jobtitle: '#fcb62c',
-      phonenum: '#c32026',
-      email: '#a04ba0',
+      company_mvs: '#ed7a23',
       url: '#767676',
-      utm: '#e6e6e6',
-      time: '#934900',
-      extracteddate: '#d3cba9',
-      keyphrase: '#037f70',
-      hashtags: '#0caa93',
-      mentions: '#38e5cc',
-      creditcard: '#1b7735',
-      money: '#6fbe44',
-      nationality: '#77d5f3',
-      distance: '#075484',
-      coordinate: '#caeefa',
+      drug_mvs: '#0caa93',
+      adventmed_mvs: '#0caa93',
+      anat_mvs: '#727272'
     },
 
     // The default comprehensive list of fields to include in search results
     fields: [
-      '*',
+      '.id',
+      'table',
+      'title',
+      'drug_mvs',
+      'adventmed_mvs',
+      'drug_type_mvs',
+      'company_mvs',
+      'plot_date_t',
+      'anat_mvs'
     ],
 
     // The field containing the document's title
@@ -175,15 +165,15 @@
     // The field containing the URI to the document's preview image
     previewImageUri: 'img.uri.preview',
     // The field containing the URI to the document's thumbnail image
-    thumbnailImageUri: 'img.uri.thumbnail',
+    thumbnailImageUri: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.preview, 24, 1000))',
     // The field containing the 'more like this' query for a document
-    moreLikeThisQuery: 'morelikethisquery',
+    moreLikeThisQuery: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.thumbnail, 24, 1000))',
     // The field containing the document's teaser text
     // (the default SCOPETEASER expression enables scope highlighting on results)
     teaser: 'SCOPETEASER(text, fragment=true, numFragments=4, fragmentScope=sentence)',
     // The field containing the document's full text
     // (the default SCOPETEASER expression enables scope highlighting on results)
-    text: 'SCOPETEASER(text, fragment=true, numFragments=1, fragmentSize=2147483647)',
+    text: 'SCOPETEASER(text, fragment=true, numFragments=3, fragmentSize=1024)',
     // The public key with which to connect to the mapbox public apis
     // See https://www.mapbox.com/help/how-access-tokens-work/ for more information on how to acquire a public key
     mapboxKey: '',
@@ -233,17 +223,15 @@
     resultsPerPage: 10,
     // An ordered list of facet requests to use for each query; facet expressions are also supported
     facets: [
-      'position',
+      'plot_date_t(sortby=VALUE,maxbuckets=120,dateIntervals=auto)',
       'keyphrases(maxbuckets=15)',
       'table',
       'tags',
-      'company',
-      'people',
-      'location',
-      'date(sortby=VALUE,maxbuckets=60,dateIntervals=auto)',
+      'company_mvs',
+      'location'
     ],
     // The maximum number of facets the Facet Finder attempts to add to the query. Set this to 0 to turn off Facet Finder.
-    facetFinderCount: 20,
+    facetFinderCount: 7,
     // Determines if primary results should be displayed as 'list', 'usercard', 'doccard', 'debug', or 'simple';
     format: 'list',
     // An optional filter to apply to all queries when using the advanced query language
@@ -260,7 +248,7 @@
     joinRollupMode: 'tree',
     // The name of the Business Center profile to use for queries. If set, this will enable Profile level
     // campaigns and promotions.
-    businessCenterProfile: 'Attivio',
+    businessCenterProfile: 'researchProfile',
   },
 
   /**
@@ -287,7 +275,7 @@
       'keyphrases',
     ],
     timeSeriesFacets: [ // The facet field names that should be displayed as time series
-      'date',
+      'plot_date_t',
     ],
     sentimentFacets: [// The facet field names that should be displayed with a sentiment bar
       'sentiment',
@@ -323,14 +311,9 @@
     // Sorting in 'elastic' or 'solr' doesn't support multi value fields.
     sortableFields: [
       'title',
-      'table',
-      'size',
-      'creationdate',
       'date',
       'guid',
       'linkcount',
-      'socialsecurity',
-      'zipcode',
     ],
   },
 
@@ -377,18 +360,9 @@
     showMoreLikeThisResults: true,
     // Link across these fields to other documents in the document 360 insight graph
     insightGraphLinkingFields: [
-      'people',
-      'company',
-      'location',
-      'author',
-      'cc',
-      'to',
-      // Factbook fields - uncomment lines below if factbook module has been included in your project
-      // 'country',
-      // 'spokenlanguage',
-      // 'resource',
-      // 'climate',
-      // 'ethnicity',
+      'company_mvs',
+      'drug_mvs',
+      'adventmed_mvs',
     ],
     // The maximum number of linked documents to show per entity in the document 360 insight graph
     maxLinkedDocs: 3,

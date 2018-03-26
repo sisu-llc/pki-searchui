@@ -55,9 +55,9 @@ import com.google.gson.Gson;
 @Controller
 public class RestProxy {
   static final String API_KEY_PARAM = "apikey";
-  
+
   static final Logger LOG = LoggerFactory.getLogger(RestProxy.class);
-  
+
   @ResponseStatus(value=HttpStatus.FORBIDDEN, reason="Not authenticted") // 403
   static class NotLoggedInException extends Exception {
     private static final long serialVersionUID = 8277052796269904693L;
@@ -66,7 +66,7 @@ public class RestProxy {
       super("You must be logged in to access this URL");
     }
   }
-  
+
   @Value("${suit.attivio.protocol:http}")
   String attivioProtocol;
   @Value("${suit.attivio.hostname:localhost}")
@@ -108,9 +108,9 @@ public class RestProxy {
       LOG.trace("No SAML user is logged in for a call to the search REST API.");
       throw new NotLoggedInException();
     }
-    return this.mirrorRest(newBody, method, request, response);      
+    return this.mirrorRest(newBody, method, request, response);
   }
-  
+
   /**
    * Forward all uncaught requests through to the real Attivio server
    */
@@ -125,16 +125,16 @@ public class RestProxy {
     while (headerNames.hasMoreElements()) {
       String headerName = headerNames.nextElement();
       Enumeration<String> headersForName = request.getHeaders(headerName);
-      while (headersForName.hasMoreElements()) {
+      while (headersForName.hasMoreElements() && headerName.compareToIgnoreCase("Host") != 0) {
         String singleHeaderValue = headersForName.nextElement();
         headers.add(headerName, singleHeaderValue);
       }
     }
     // And add our special origin header too.
     headers.add("origin", "suit-app");
-    
+
     // Get this to use when constructing the URI to forward to.
-    // We'll need to tweak it if we're using token-based authentication 
+    // We'll need to tweak it if we're using token-based authentication
     String queryString = request.getQueryString();
     // In case the incoming URL's path or query string has had pieces URL-encoded, we need to
     // decode them before passing them along.
@@ -152,10 +152,10 @@ public class RestProxy {
         queryString = queryString + "&" + API_KEY_PARAM + "=" + attivioAuthToken;
       } else {
         // It's the only query parameter... no need for the ampersand
-        queryString = API_KEY_PARAM + "=" + attivioAuthToken; 
-      }      
+        queryString = API_KEY_PARAM + "=" + attivioAuthToken;
+      }
     } else {
-      // Add the basic authorization header for the username/password used to talk to to the Attivio back-end 
+      // Add the basic authorization header for the username/password used to talk to to the Attivio back-end
       try {
         String authValue;
         authValue = new String(Base64.encodeBase64((this.attivioUsername + ":" + this.attivioPassword).getBytes("UTF-8")), "UTF-8");
@@ -179,25 +179,25 @@ public class RestProxy {
       try {
         socketFactory = new SSLConnectionSocketFactory(new SSLContextBuilder().loadTrustMaterial(null, new TrustSelfSignedStrategy()).build(), NoopHostnameVerifier.INSTANCE);
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
-        clientHttpRequestFactory.setHttpClient(httpClient);      
+        clientHttpRequestFactory.setHttpClient(httpClient);
       } catch (KeyManagementException | NoSuchAlgorithmException | KeyStoreException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
     }
-    
+
     RestTemplate restTemplate = new RestTemplate(clientHttpRequestFactory);
     // Make sure the forwarded call is made with UTF-8 encoding
     restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
 
     ResponseEntity<String> responseEntity = null;
-    
-    LOG.trace("Proxying REST API call from '" + request.getRequestURL().toString() + 
+
+    LOG.trace("Proxying REST API call from '" + request.getRequestURL().toString() +
         (request.getQueryString() != null ? ("?" + request.getQueryString()) : "") + "' to '" + uri.toString() + "'");
-    
+
     try {
       responseEntity = restTemplate.exchange(uri, method, new HttpEntity<String>(body, headers), String.class);
-      
+
       // Filter out any Transfer-Encoding headers
       HttpHeaders updatedResponseHeaders = new HttpHeaders();
       Set<Entry<String, List<String>>> responseHeaderEntries = responseEntity.getHeaders().entrySet();
@@ -220,7 +220,7 @@ public class RestProxy {
         String responseBody = ((HttpServerErrorException)e).getResponseBodyAsString();
         HttpStatus statusCode = ((HttpServerErrorException)e).getStatusCode();
         LOG.trace("The response body from the request was: " + responseBody);
-        
+
         responseEntity = new ResponseEntity<>(responseBody, statusCode);
       }
     }
