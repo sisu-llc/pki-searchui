@@ -3,17 +3,7 @@
     "react",
     "flow",
     "stage-0",
-    [
-      "env",
-      {
-        "targets": {
-          "browsers": [
-            "last 2 versions",
-            "ie >= 11"
-          ]
-        }
-      }
-    ]
+	"es2015"
   ],
   "plugins": ["transform-decorators-legacy", "transform-class-properties"]
 }
