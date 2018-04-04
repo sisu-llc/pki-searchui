@@ -102,6 +102,8 @@ type Document360PageState = {
 };
 
 class Document360Page extends React.Component<Document360PageDefaultProps, Document360PageProps, Document360PageState> { // eslint-disable-line max-len
+  static displayName = 'Document360Page';
+
   static defaultProps = {
     baseUri: '',
     entityFields: new Map(),

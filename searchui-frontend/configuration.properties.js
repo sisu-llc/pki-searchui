@@ -163,11 +163,11 @@
     // The field containing the document's sourcepath (used by the browser when downloading files)
     sourcePath: 'sourcepath',
     // The field containing the URI to the document's preview image
-    previewImageUri: 'img.uri.preview',
+    previewImageUri: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.preview, 24, 1000))',
     // The field containing the URI to the document's thumbnail image
-    thumbnailImageUri: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.preview, 24, 1000))',
+    thumbnailImageUri: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.thumbnail, 24, 1000))',
     // The field containing the 'more like this' query for a document
-    moreLikeThisQuery: 'concat(string("https://awsattiviodemo.pkiapps.net/"), substring(img.uri.thumbnail, 24, 1000))',
+    moreLikeThisQuery: 'morelikethisquery',
     // The field containing the document's teaser text
     // (the default SCOPETEASER expression enables scope highlighting on results)
     teaser: 'SCOPETEASER(text, fragment=true, numFragments=4, fragmentScope=sentence)',
