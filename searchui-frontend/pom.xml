@@ -4,7 +4,7 @@
   <parent>
     <groupId>com.pki.suit</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
   <artifactId>pki-searchui-frontend</artifactId>
   <packaging>pom</packaging>
@@ -12,7 +12,7 @@
   <description>PKI Search UI Framework, UI component</description>
   <properties>
     <frontend.node.version>v8.9.4</frontend.node.version>
-	<webpack.args>--output-path=${project.build.directory}/dist</webpack.args>
+	<webpack.args>-p --output-path=${project.build.directory}/dist</webpack.args>
   </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>

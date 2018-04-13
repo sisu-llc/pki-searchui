@@ -1,6 +1,6 @@
 {
   "name": "@sisu-llc/pki-searchui",
-  "version": "0.1.1",
+  "version": "1.0.2",
   "description": "Framework for building search user-interface applications on top of the Attivio platform.",
   "keywords": [
     "Attivio",
@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.0.7",
-    "@sisu-llc/pki-suit": "^0.1.23",
+    "@sisu-llc/pki-suit": "^0.1.26",
     "babel-polyfill": "^6.26.0",
     "es6-object-assign": "^1.1.0",
     "es6-promise": "^4.1.1",
@@ -65,10 +65,13 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chai-enzyme": "^0.8.0",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "empty": "^0.10.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-15": "^1.0.5",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "15.1.0",
     "eslint-plugin-flowtype": "2.35.1",
@@ -84,6 +87,7 @@
     "inferno": "^3.10.1",
     "less": "^2.7.2",
     "less-loader": "^4.1.0",
+    "mocha": "^5.0.5",
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.4.1",

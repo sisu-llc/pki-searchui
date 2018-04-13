@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.pki.suit</groupId>
   <artifactId>parent</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>pki-searchui/parent</name>
   <description>Framework for building search user-interface applications on top of the Attivio platform</description>

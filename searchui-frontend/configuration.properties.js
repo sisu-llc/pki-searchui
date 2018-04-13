@@ -145,7 +145,8 @@
       'drug_type_mvs',
       'company_mvs',
       'plot_date_t',
-      'anat_mvs'
+      'anat_mvs',
+      'pki.suit.type',
     ],
 
     // The field containing the document's title
