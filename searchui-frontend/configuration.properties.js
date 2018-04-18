@@ -147,6 +147,9 @@
       'plot_date_t',
       'anat_mvs',
       'pki.suit.type',
+      'pki.spotfire.filter.table',
+      'pki.spotfire.filter.column',
+      'pki.spotfire.filter.values',
     ],
 
     // The field containing the document's title
@@ -249,7 +252,7 @@
     joinRollupMode: 'tree',
     // The name of the Business Center profile to use for queries. If set, this will enable Profile level
     // campaigns and promotions.
-    businessCenterProfile: 'researchProfile',
+    businessCenterProfile: 'spotfireTestProfile',
   },
 
   /**

@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
@@ -16,4 +16,7 @@ module.exports = merge(common, {
   },
   output: { filename: '[name].min.js' },
   devtool: 'source-map',
+  plugins: [
+    new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify('production') }),
+  ],
 });
