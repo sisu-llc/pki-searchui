@@ -1,3 +1,4 @@
+const path = require('path');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
@@ -5,11 +6,16 @@ module.exports = merge(common, {
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    publicPath: '/pki-searchui',
-    contentBase: common.output.path,
+    // lazy: true,
+    overlay: true,
+    filename: 'main.js',
+    publicPath: '/pki-searchui/',
+    // contentBase: path.join(__dirname, 'src'),
     port: 9000,
-    host: '127.0.0.1',
-
+    //hot: true,
+    historyApiFallback: {
+      index: '/pki-searchui/',
+    },
     // NOTE: make sure you bump the number of allowed file descriptors to ~4096!!!
     proxy: [{
       context: [
