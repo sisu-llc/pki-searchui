@@ -150,6 +150,8 @@
       'pki.spotfire.filter.table',
       'pki.spotfire.filter.column',
       'pki.spotfire.filter.values',
+      'pki.spotfire.host',
+      'pki.spotfire.file',
     ],
 
     // The field containing the document's title
