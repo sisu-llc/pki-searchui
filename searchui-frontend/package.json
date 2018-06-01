@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.0.7",
-    "@sisu-llc/pki-suit": "^0.1.31",
+    "@sisu-llc/pki-suit": "^0.2.0",
     "babel-polyfill": "^6.26.0",
     "es6-object-assign": "^1.1.0",
     "es6-promise": "^4.1.1",

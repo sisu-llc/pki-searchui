@@ -12,6 +12,7 @@ import Col from 'react-bootstrap/lib/Col';
 
 import {
   Configurable,
+  DisappearingImage,
   SearchDocument,
   SimilarDocuments,
   Subheader360,
@@ -289,47 +290,47 @@ class Document360Page extends React.Component<Document360PageDefaultProps, Docum
     if (this.state.doc) {
       const doc = this.state.doc;
       const text = doc.getFirstValue('teaser');
-      const thumbnailUri = doc.getFirstValue('thumbnailImageUri');
+      let previewUri = doc.getFirstValue('previewImageUri');
+
+      //          <h1 className="attivio-360-hed" >
 
       pageContents = (
         <Grid fluid>
+          <SearchResultTitle as='h1' doc={doc}/>
           <Row>
-            <Col xs={10} sm={10}>
-              <h1 className="attivio-360-hed" >
-                <SearchResultTitle doc={doc} />
-              </h1>
+            <Col xs={3} sm={3}>
               <Row>
-                <Col xs={8} sm={8}>
-                  <p
-                    className="attivio-search-result-desc"
-                    dangerouslySetInnerHTML={{ __html: text }} // eslint-disable-line react/no-danger
-                  />
-                </Col>
-                <Col xs={4} sm={4}>
-                  <DocumentEntityList doc={doc} entityFields={this.props.entityFields} />
-                </Col>
+                <Subheader360 label="Document Preview" />
+                { previewUri.indexOf('aie.img.preview') > 0 ? (
+                  <DisappearingImage className="img-responsive center-block" style={{width: '300px'}} src={previewUri} />
+                ) : ( <p className="attivio-search-result-desc"
+                         dangerouslySetInnerHTML={{ __html: text }} // eslint-disable-line react/no-danger
+                      />
+                    )}
+              </Row>
+              <Row>
+                <Subheader360 label="Similar Results" />
+                <SimilarDocuments baseDoc={this.state.doc} baseUri={this.props.baseUri} />
               </Row>
             </Col>
-            <Col xs={2} sm={2}>
-              <DocumentThumbnail uri={thumbnailUri} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={8} sm={8}>
-              <Subheader360 label="Knowledge Graph" />
-              <KnowledgeGraphPanel
-                doc={doc}
-                navigateToDoc={this.navigateToDoc}
-                navigateToEntity={this.navigateToEntity}
-                entityName={this.state.entityName}
-                entityValue={this.state.entityValue}
-                linkingFields={this.props.insightGraphLinkingFields}
-                includeAllTables={this.props.includeAllTables}
-              />
-            </Col>
-            <Col xs={4} sm={4}>
-              <Subheader360 label="Similar Results" />
-              <SimilarDocuments baseDoc={this.state.doc} baseUri={this.props.baseUri} />
+          <Col xs={9} sm={9}>
+              <Row>
+                <Subheader360 label="Knowledge Graph" />
+                <KnowledgeGraphPanel
+                  doc={doc}
+                  navigateToDoc={this.navigateToDoc}
+                  navigateToEntity={this.navigateToEntity}
+                  entityName={this.state.entityName}
+                  entityValue={this.state.entityValue}
+                  linkingFields={this.props.insightGraphLinkingFields}
+                  includeAllTables={this.props.includeAllTables}
+                  panelHeight="520px"
+                  panelBackgroundColor="#f7f7f7"/>
+              </Row>
+              <Row>
+                <Subheader360 label="Document Entities" />
+                <DocumentEntityList doc={doc} entityFields={this.props.entityFields} />
+              </Row>
             </Col>
           </Row>
         </Grid>
