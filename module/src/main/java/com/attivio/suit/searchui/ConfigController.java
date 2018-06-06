@@ -27,6 +27,11 @@ public class ConfigController {
   @RequestMapping("/configuration")
   public String configuration() {
     String path = System.getProperty("attivio.project") + "/" + searchuiConfig.getConfigurationPath();
+    if (!Files.exists(Paths.get(path))) {
+      // If there's no configuration file relative to the project, then try to get it from
+      // the same path, but relative to the Attivio installation directory 
+      path = System.getProperty("attivio.home") + "/" + searchuiConfig.getConfigurationPath();
+    }
     try {
       return new String(Files.readAllBytes(Paths.get(path)));
     } catch (IOException e) {

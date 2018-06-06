@@ -5,17 +5,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
+import org.springframework.security.saml.storage.EmptyStorageFactory;
+import org.springframework.security.saml.storage.SAMLMessageStorageFactory;
 import org.springframework.web.WebApplicationInitializer;
 
 import com.attivio.suitback.controllers.HomeController;
 import com.attivio.suitback.controllers.HomeControllerHandlerMapper;
-import com.github.ulisesbocchio.spring.boot.security.saml.annotation.EnableSAMLSSO;
 
 @SpringBootApplication
-@EnableSAMLSSO
 public class SuitBackApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
-  // Note, we need to explicitly implement WebApplicationInitializer to allow the WAR to work on WebLogic
+  // NOTE: Even though SpringBootServletInitializer implements WebApplicationInitializer,
+  // we apparently need to explicitly implement it here to allow the WAR to work on WebLogic.
   
   @Override
   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -31,6 +33,12 @@ public class SuitBackApplication extends SpringBootServletInitializer implements
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(SuitBackApplication.class, args);
 	}
+	
+  @Bean
+  @Profile("saml")
+  SAMLMessageStorageFactory samlMessageStorageFactory() {
+    return new EmptyStorageFactory();
+  }
 
   @Bean
   public HomeControllerHandlerMapper myHomeControllerHandlerMapper(HomeController myHomeController) {

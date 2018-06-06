@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/attivio/searchui.svg)](https://travis-ci.org/attivio/searchui)
+
 <a href="http://www.attivio.com" target="_blank"><img src="images/attivio-logo.png" alt="Attivio" width="240" border="0" /></a>
 ## Table of Contents
 * [Overview](#overview)
@@ -11,6 +13,7 @@
 * [360&deg; View](#360-view)
 * [Insights](#insights)
 * [How Do I Configure Search UI?](#how-do-i-configure-search-ui)
+* [Contributing](#contributing)
 
 ## Overview
 The Attivio **Search UI** is an application built on top of Attivio’s Search UI Toolkit, or **SUIT**. The SUIT library is available in a [separate repository](https://github.com/attivio/suit) and via NPM (see below for details).
@@ -18,9 +21,9 @@ The Attivio **Search UI** is an application built on top of Attivio’s Search U
 The Attivio Search UI allows you to search across and view the data in the index of your Attivio, Elasticsearch or SOLR installation. You can customize it to suit your needs and can also use it as the basis for creating your own, brand-new search application.
 
 ## Project Organization
-The Attivio Search UI is a web application written in JavaScript and based on the React project. It runs in the user’s browser. This component is in the [**searchui-frontend**](https://github.com/attivio/searchui/tree/master/searchui-frontend) directory of this repository and consists of application-level code for searching the index, including the definitions of the pages in the application and the logic of how they're connected.
+The Attivio Search UI is a web application written in JavaScript and based on the React project. It runs in the user’s browser. This component is in the [**frontend**](https://github.com/attivio/searchui/tree/master/frontend) directory of this repository and consists of application-level code for searching the index, including the definitions of the pages in the application and the logic of how they're connected.
 
-The project also contains two additional components that allow you to host the web application, either on one or more Attivio node servers ([**searchui-module**](https://github.com/attivio/searchui/tree/master/searchui-module)) or from a servlet container such as Apache Tomcat ([**searchui-server**](https://github.com/attivio/searchui/tree/master/searchui-server)). The availability of certain functionality will vary depending on how you host and configure the Search UI application and which search engine you use, as described below.
+The project also contains two additional components that allow you to host the web application, either on one or more Attivio node servers ([**module**](https://github.com/attivio/searchui/tree/master/module)) or from a servlet container such as Apache Tomcat ([**servlet**](https://github.com/attivio/searchui/tree/master/servlet)). The availability of certain functionality will vary depending on how you host and configure the Search UI application and which search engine you use, as described below.
 
 ## What is SUIT?
 
@@ -118,5 +121,7 @@ Many Search UI features are configurable, including pointing it to an Elasticsea
 > If any values are not specified, the application uses system-application defaults.
 > If Search UI is deployed to multiple web servers or Attivio nodes, the preferences must be manually synchronized across all nodes.
 
-The full list of properties and the description of each can be found in the [configuration.properties.js](searchui-frontend/configuration.properties.js) file.
+The full list of properties and the description of each can be found in the [configuration.properties.js](frontend/configuration.properties.js) file.
 
+## Contributing
+To report an issue or contribute, see [CONTRIBUTING.md](CONTRIBUTING.md)

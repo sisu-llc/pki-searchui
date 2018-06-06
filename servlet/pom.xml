@@ -2,13 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>com.pki.suit</groupId>
+    <groupId>com.pki.searchui</groupId>
     <artifactId>parent</artifactId>
     <version>1.0.2-SNAPSHOT</version>
   </parent>
-  <artifactId>pki-searchui-servlet</artifactId>
+  <artifactId>servlet</artifactId>
   <packaging>war</packaging>
-  <name>pki-searchui/servlet</name>
+  <name>Servlet</name>
+  <description>Wraps the front-end application in a WAR file that can be deployed to a serlvet container like Tomcat</description>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -30,8 +31,9 @@
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.pki.suit</groupId>
-      <artifactId>pki-searchui-frontend</artifactId>
+      <!-- Update this when renaming the project -->
+      <groupId>com.pki.searchui</groupId>
+      <artifactId>frontend</artifactId>
       <version>${project.parent.version}</version>
       <type>zip</type>
       <classifier>dist</classifier>
@@ -96,8 +98,9 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>com.pki.suit</groupId>
-                  <artifactId>pki-searchui-frontend</artifactId>
+                  <!-- Update this when renaming the project -->
+                  <groupId>${project.parent.groupId}</groupId>
+                  <artifactId>frontend</artifactId>
                   <classifier>dist</classifier>
                   <type>zip</type>
                   <outputDirectory>${project.build.directory}/classes/static</outputDirectory>
@@ -119,8 +122,8 @@
               <failOnMissingWebXml>false</failOnMissingWebXml>
               <excludes>
                 <exclude>
-                  <groupId>com.pki.suit</groupId>
-                  <artifactId>pki-searchui-frontend</artifactId>
+                  <groupId>${project.parent.groupId}</groupId>
+                  <artifactId>frontend</artifactId>
                 </exclude>
               </excludes>
             </configuration>
