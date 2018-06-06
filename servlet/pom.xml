@@ -99,7 +99,7 @@
               <artifactItems>
                 <artifactItem>
                   <!-- Update this when renaming the project -->
-                  <groupId>${project.group.id}</groupId>
+                  <groupId>${project.parent.groupId}</groupId>
                   <artifactId>frontend</artifactId>
                   <classifier>dist</classifier>
                   <type>zip</type>
@@ -122,7 +122,7 @@
               <failOnMissingWebXml>false</failOnMissingWebXml>
               <excludes>
                 <exclude>
-                  <groupId>${project.group.id}</groupId>
+                  <groupId>${project.parent.groupId}</groupId>
                   <artifactId>frontend</artifactId>
                 </exclude>
               </excludes>
